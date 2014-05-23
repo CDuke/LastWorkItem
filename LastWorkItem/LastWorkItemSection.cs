@@ -5,7 +5,6 @@ using CDuke.LastWorkItem.Base;
 using Microsoft.TeamFoundation.Controls;
 using Microsoft.TeamFoundation.Controls.WPF.TeamExplorer;
 using Microsoft.TeamFoundation.VersionControl.Client;
-using Microsoft.TeamFoundation.VersionControl.Controls.Extensibility;
 
 namespace CDuke.LastWorkItem
 {
@@ -46,88 +45,6 @@ namespace CDuke.LastWorkItem
 				return;
 
 			SetLastWorkItem(lastChangeset, null);
-		}
-
-		public void SetLastWorkItemAndMergeComment()
-		{
-			var lastChangeset = GetLastUserChangeSet();
-			if (lastChangeset == null)
-				return;
-
-			var comment = lastChangeset.Comment;
-
-			var targetBranchName = GetTargetBranchName();
-			if (comment != null)
-			{
-				if (!comment.StartsWith("MERGE "))
-				{
-					var sourceBranch = GetSourceBranchName(lastChangeset);
-					comment = string.Format("MERGE {0} -> {1} ({2})", sourceBranch, targetBranchName, comment);
-				}
-				else
-				{
-					var commentStartPos = comment.IndexOf('(');
-					var mergeComment = comment.Substring(0, commentStartPos);
-					if (commentStartPos + 1 < comment.Length)
-						comment = comment.Substring(commentStartPos + 1, comment.Length - commentStartPos);
-					else
-						comment = string.Empty;
-					comment = string.Format("{0} -> {1} ({2})", mergeComment, targetBranchName, comment);
-				}
-			}
-
-			SetLastWorkItem(lastChangeset, comment);
-		}
-
-		private string GetTargetBranchName()
-		{
-			var pcExt = GetService<IPendingChangesExt>();
-
-			if (pcExt.IncludedChanges == null || pcExt.IncludedChanges.Length == 0)
-				return null;
-
-			var change = pcExt.IncludedChanges[0];
-			
-			var tfs = CurrentContext.TeamProjectCollection;
-			var versionControl = tfs.GetService<VersionControlServer>();
-			var branchObjects = versionControl.QueryRootBranchObjects(RecursionType.Full);
-
-			var targetBranch = branchObjects.FirstOrDefault(b =>
-			{
-				var branchPath = b.Properties.RootItem.Item;
-				return change.ServerItem.StartsWith(branchPath.EndsWith("/") ? branchPath : branchPath + "/");
-			});
-
-			if (targetBranch == null)
-				return null;
-
-			return GetBranchName(targetBranch.Properties.RootItem);
-		}
-
-		private string GetSourceBranchName(Changeset lastChangeset)
-		{
-			if (lastChangeset.Changes == null || lastChangeset.Changes.Length == 0)
-				return null;
-
-			var tfs = CurrentContext.TeamProjectCollection;
-			var versionControl = tfs.GetService<VersionControlServer>();
-
-			var branchObjects = versionControl.QueryBranchObjectOwnership(new [] {lastChangeset.ChangesetId});
-
-			if (branchObjects == null || branchObjects.Length == 0)
-				return null;
-
-			var branch = branchObjects[0];
-			var name = GetBranchName(branch.RootItem);
-
-			return name;
-		}
-
-		private static string GetBranchName(ItemIdentifier branch)
-		{
-			var pos = branch.Item.LastIndexOf('/');
-			var name = branch.Item.Substring(pos + 1);
-			return name;
 		}
 
 		private static int GetAssociatedWorkItemId(Changeset changeset)

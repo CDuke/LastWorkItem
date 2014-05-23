@@ -31,10 +31,5 @@ namespace CDuke.LastWorkItem
 		{
 			this.ParentSection.SetLastWorkItem();
 		}
-
-		private void SetLastWorkItemLinkAndComment_Click(object sender, RoutedEventArgs e)
-		{
-			this.ParentSection.SetLastWorkItemAndMergeComment();
-		} 
 	}
 }
