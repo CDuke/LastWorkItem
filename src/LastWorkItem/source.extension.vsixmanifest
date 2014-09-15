@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="fcc0c8fb-b738-4516-9e06-0cfd95d828ed" Version="1.0" Language="en-US" Publisher="Denis Kulikov" />
+		<Identity Id="LastWorkItem.Vs2013.fcc0c8fb-b738-4516-9e06-0cfd95d828ed" Version="1.0" Language="en-US" Publisher="Kulikov Denis" />
 		<DisplayName>LastWorkItem</DisplayName>
 		<Description>Let select last commited workitem in pending changes window</Description>
+		<Tags>work item</Tags>
 	</Metadata>
 	<Installation InstalledByMsi="false">
 		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />

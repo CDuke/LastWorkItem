@@ -7,19 +7,5 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <Grid Margin="6,6,6,6">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <!--  Action links  -->
-        <WrapPanel Grid.Row="0"
-                   Grid.Column="0"
-                   Margin="0,0,0,6"
-                   Orientation="Horizontal">
-            <TextBlock>
-                <Hyperlink x:Name="SetLastWorkItemLink" Click="SetLastWorkItemLink_Click">Set last work item</Hyperlink>
-            </TextBlock>
-        </WrapPanel>
-    </Grid>
+  <Grid Margin="6,6,6,6" />
 </UserControl>
