@@ -49,7 +49,7 @@ namespace CDuke.LastWorkItem
             get { return this.SectionContent as LastWorkItemView; } 
         }
 
-        public void SetLastWorkItem()
+        private void SetLastWorkItem()
         {
             var teamExplorer = GetService<ITeamExplorer>();
             _workitemService.SetLastWorkItem(teamExplorer, CurrentContext);
