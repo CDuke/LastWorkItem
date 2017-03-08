@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="LastWorkItem.Vs2014.fcc0c8fb-b738-4516-9e06-0cfd95d828ed" Version="1.0" Language="en-US" Publisher="Kulikov Denis" />
+		<Identity Id="LastWorkItem.Vs2017.fcc0c8fb-b738-4516-9e06-0cfd95d828ed" Version="1.0" Language="en-US" Publisher="Kulikov Denis" />
 		<DisplayName>Last Work Item for Visual Studio 2017</DisplayName>
 		<Description xml:space="preserve">Allow quickly select workitem associated with last changeset on pending changes page.</Description>
 		<License>LICENSE.txt</License>
